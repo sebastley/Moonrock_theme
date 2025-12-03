@@ -1,0 +1,19 @@
+{%- comment -%} Snippet: custom-badge.liquid {%- endcomment -%}
+{%- assign badge_label = '' -%}
+
+{%- for tag in product.tags -%}
+  {%- assign t = tag | downcase -%}
+  {%- if t == 'badge:new' -%}
+    {%- assign badge_label = 'NEW' -%}{% break %}
+  {%- elsif t == 'badge:bestseller' -%}
+    {%- assign badge_label = 'BEST SELLER' -%}{% break %}
+  {%- elsif t == 'badge:top-pick' -%}
+    {%- assign badge_label = 'TOP PICK' -%}{% break %}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if badge_label != '' -%}
+  <div class="c-badge c-badge--{{ badge_label | handleize }}" aria-label="{{ badge_label }}">
+    <span>{{ badge_label }}</span>
+  </div>
+{%- endif -%}
